@@ -1,0 +1,19 @@
+export PATH="$PATH:/Users/michellemai/Library/Python/3.13/bin"
+
+export PATH=$PATH:/usr/local/share/dotnet
+export PATH=$PATH:/usr/local/share/dotnet
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/Users/michellemai/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
