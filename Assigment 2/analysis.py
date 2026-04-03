@@ -25,19 +25,3 @@ plt.ylabel("Number of Crimes")
 
 plt.savefig("crime_timeseries.png")
 plt.show()
-
-import folium
-from folium.plugins import HeatMap
-
-m = folium.Map(location=[37.77, -122.42], zoom_start=12)
-
-heat_data = list(zip(df_combined['Y'], df_combined['X']))
-HeatMap(heat_data).add_to(m)
-
-m.save("crime_map.html")
-
-import plotly.express as px
-
-fig = px.line(df_combined, x="Date", y="Count", color="Category")
-
-fig.write_html("interactive_plot.html")
