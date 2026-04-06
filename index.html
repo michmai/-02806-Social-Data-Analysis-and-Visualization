@@ -1,95 +1,311 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>How COVID Reshaped Crime in San Francisco</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #2563eb;
+            --primary-soft: #dbeafe;
+            --border: #e5e7eb;
+            --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+            --radius: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 28px 20px 56px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb 55%, #3b82f6);
+            color: #fff;
+            border-radius: 20px;
+            padding: 34px 32px;
+            box-shadow: var(--shadow);
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.92);
+            max-width: 70ch;
+        }
+
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: 1.35rem;
+            line-height: 1.3;
+            color: #0f172a;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .figure {
+            margin: 16px 0 14px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .figure img,
+        .figure iframe {
+            display: block;
+            width: 100%;
+            border: 0;
+        }
+
+        .figure iframe {
+            min-height: 500px;
+        }
+
+        .caption {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        ul {
+            margin: 10px 0 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            color: var(--primary);
+            background: var(--primary-soft);
+            border-radius: 999px;
+            padding: 5px 10px;
+            margin-bottom: 12px;
+        }
+
+        .map-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin: 16px 0 14px;
+        }
+
+        .map-panel {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .map-panel h3 {
+            margin: 0;
+            padding: 12px 14px;
+            font-size: 1rem;
+            border-bottom: 1px solid var(--border);
+            background: #f8fafc;
+        }
+
+        .map-panel iframe {
+            display: block;
+            width: 100%;
+            min-height: 420px;
+            border: 0;
+        }
+
+        @media (max-width: 640px) {
+            .hero,
+            .section {
+                padding: 20px;
+            }
+
+            .map-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .figure iframe {
+                min-height: 360px;
+            }
+        }
+    </style>
 </head>
+<body>
+    <main class="container">
+        <header class="hero">
+            <div class="tag">Data Story</div>
+            <h1>A City Paused: How COVID Reshaped Crime in San Francisco</h1>
+            <p>
+                In early 2020, San Francisco, like much of the world, came to an abrupt halt. Offices closed, tourism disappeared, and everyday routines were disrupted almost overnight. Because many types of crime depend on movement and social interaction, this moment provides a natural experiment: what happens to reported crime when a city suddenly slows down?
+                Using police incident data, this story focuses on the period from 2019 to 2022 to examine how reported crime changed across time, space, and category.
+            </p>
+        </header>
 
-<body style="font-family: Arial; max-width: 800px; margin: auto; line-height: 1.6;">
+        <section class="section">
+            <h2>A sudden break in activity</h2>
+            <p>
+                The first question is not simply whether crime increased or decreased, but how quickly patterns shifted when urban life was disrupted.
+            </p>
 
-<h1>A City Paused: How COVID Reshaped Crime in San Francisco</h1>
+            <div class="figure">
+                <img id="crime-timeseries-img" src="crime_timeseries.png?v=20260406" alt="Monthly reported crimes in San Francisco from 2019 to 2022" />
+            </div>
+            <p class="caption"><b>Figure 1:</b> Monthly number of reported crimes in San Francisco from 2019 to 2022. The shaded area marks the COVID-19 lockdown period beginning in March 2020.</p>
 
-<p>
-In early 2020, San Francisco — like much of the world — came to a sudden halt. Streets emptied, businesses closed, and everyday routines disappeared almost overnight. 
-Using police incident data from 2015 to 2022, this short data story explores how these changes affected crime patterns in the city.
-</p>
+            <p>
+                The change is immediate and pronounced. At the onset of lockdown in early 2020, reported incidents drop sharply, reaching their lowest levels within a few months. This is not a gradual trend, but a clear structural break in the data.
+                This pattern supports the idea that many crimes depend on routine activity — people moving through public space, interacting in commercial areas, and participating in everyday urban life. When those interactions are reduced, opportunities for certain types of crime decline as well.
+            </p>
 
-<p>
-Rather than asking whether crime simply increased or decreased, the goal is to understand how it shifted — over time, across locations, and between different types of crime.
-</p>
+            <p>
+                However, the figure should be interpreted carefully. Police incident data does not measure crime directly, but recorded events. Changes in reporting behavior, policing priorities, and access to public services during the pandemic may also contribute to the observed decline. As a result, the drop reflects changes in reported incidents, not necessarily a complete reduction in all forms of crime.
+            </p>
+        </section>
 
----
+        <section class="section">
+            <h2>Did the geography of crime change?</h2>
 
-<h2>A sudden drop in activity</h2>
+            <p>
+                If total reported crime declined, the next question is whether incidents also shifted geographically.
+            </p>
 
-<img src="crime_timeseries.png" width="100%">
+            <div class="map-comparison">
+                <div class="map-panel">
+                    <h3>Before COVID</h3>
+                    <iframe id="crime-map-pre-frame" src="crime_map_pre_covid.html?v=20260406" title="Crime map before COVID"></iframe>
+                </div>
 
-<p><b>Figure 1:</b> Monthly number of reported crimes in San Francisco from 2015 to 2022. The shaded area marks the COVID-19 lockdown period beginning in March 2020.</p>
+                <div class="map-panel">
+                    <h3>During COVID</h3>
+                    <iframe id="crime-map-covid-frame" src="crime_map_covid.html?v=20260406" title="Crime map during COVID"></iframe>
+                </div>
+            </div>
 
-<p>
-The decline in early 2020 is immediate and noticeable. As movement across the city decreased, so did the number of reported incidents. 
-This suggests that many crimes are closely tied to everyday activity — fewer people in public spaces likely means fewer opportunities for certain offenses.
-</p>
+            <p class="caption"><b>Figure 2:</b> Comparison of reported incident locations before COVID and during the main lockdown period.
 
-<p>
-At the same time, it is important to be cautious. A drop in reported crime does not necessarily mean a true drop in criminal behavior. Changes in policing, reporting, or public priorities during the pandemic may also play a role.
-</p>
+            <p>
+                The two maps show that, despite the overall drop in incidents, the spatial pattern remains broadly consistent. The same areas of the city continue to appear as hotspots before and during COVID, suggesting that the underlying geography of reported crime is relatively stable.
+            </p>
 
----
+            <p>
+                This indicates that while the volume of incidents changed, the structure of where crime is concentrated did not shift dramatically. Urban features such as population density, commercial activity, and transport corridors appear to continue shaping where incidents are recorded, even during a period of reduced mobility.
+            </p>
+                At the same time, any differences between the maps should be interpreted cautiously. These visualizations are descriptive and aggregate many observations. They cannot distinguish between changes in underlying behavior and changes in reporting or policing practices across neighborhoods.
+            <p>
 
-<h2>Where did crime go?</h2>
+        </section>
 
-<iframe src="crime_map.html" width="100%" height="500"></iframe>
+        <section class="section">
+            <h2>Not all crime behaves the same</h2>
 
-<p><b>Figure 2:</b> Heatmap of crime locations in San Francisco. The map highlights areas with higher concentrations of reported incidents.</p>
+            <p>
+                A decline in total incidents does not mean all types of crime respond in the same way.
+            </p>
 
-<p>
-Crime remains concentrated in specific areas of the city, even during periods of reduced activity. 
-This suggests that underlying geographic patterns — such as density, infrastructure, and economic activity — continue to shape where incidents occur.
-</p>
+            <div class="figure">
+                <iframe id="interactive-plot-frame" src="interactive_plot.html?v=20260406" title="Interactive trends for top crime categories"></iframe>
+            </div>
+            <p class="caption"><b>Figure 3:</b> Monthly incident counts for the most common crime categories from 2019 to 2022.
 
-<p>
-However, the map alone cannot explain why these patterns exist. It reflects reported incidents, which may be influenced by both actual crime and how resources are allocated across districts.
-</p>
+            <p>
+                The category-level trends show clear differences in how crime types respond to disruption. Theft-related incidents, in particular, drop sharply during the lockdown period, aligning with reduced movement and fewer opportunities for interaction in public spaces. In contrast, other categories show smaller declines or recover more quickly.
+            </p>
 
----
+            <p>
+                This uneven response highlights that crime is not a single phenomenon. Different categories depend on different conditions, some are highly sensitive to mobility and opportunity, while others are less affected by changes in public activity.
+            </p>
+                The interactive format reinforces this point by allowing individual categories to be isolated. This makes it clear that the pandemic did not produce a uniform effect, but rather reshaped the composition of reported incidents.
+            <p>
 
-<h2>Not all crime behaves the same</h2>
+        </section>
 
-<iframe src="interactive_plot.html" width="100%" height="500"></iframe>
+        <section class="section">
+            <h2>Conclusion</h2>
 
-<p><b>Figure 3:</b> Trends for the most common crime categories over time. The interactive plot allows comparison across different types of incidents.</p>
+            <p>
+                The COVID-19 pandemic did not simply reduce crime in San Francisco — it reorganized it.
+            </p>
 
-<p>
-Different types of crime respond differently to changes in society. Theft, for example, shows a clear decline during lockdown, likely due to reduced public interaction. 
-Other categories appear more stable, suggesting they are less dependent on crowded environments.
-</p>
+            <p>
+                The time series reveals a sharp break in reported incidents, reflecting a sudden disruption of everyday urban activity. The spatial comparison shows that, despite this drop, crime remained concentrated in familiar areas of the city. Finally, the category-level analysis demonstrates that different types of crime responded differently to the same disruption.
+            </p>
 
-<p>
-This highlights an important point: crime data reflects both behavior and opportunity. When opportunities change — as they did during COVID — patterns shift accordingly.
-</p>
+            <p>
+                Together, these patterns suggest that reported crime is closely tied to the rhythms of city life. When movement, interaction, and routine activity change, the opportunities for different types of incidents change as well.
+            </p>
 
----
+            <p>
+                At the same time, these findings must be interpreted with care. Police incident data reflects not only behavior, but also reporting practices, institutional priorities, and enforcement decisions. Understanding these limitations is essential to interpreting the patterns responsibly.
+            </p>
+            
+        </section>
 
-<h2>Conclusion</h2>
+        <section class="section">
+            <h2>References</h2>
+            <ul>
+                <li>San Francisco Police Department Incident Reports</li>
+                <li>Course material: Richardson et al. (bias in policing data)</li>
+                <li>COVID-19 lockdown timeline (2020–2021)</li>
+            </ul>
+        </section>
+    </main>
 
-<p>
-The pandemic did not simply reduce crime — it reshaped it. As San Francisco gradually reopened, crime levels began to rise again, reinforcing the connection between urban activity and reported incidents.
-</p>
+    <script>
+        // Auto cache-busting during local preview/development.
+        const cacheBust = Date.now();
 
-<p>
-At the same time, these findings should be interpreted carefully. Crime data is influenced by many factors beyond actual behavior, including reporting practices and policing strategies. 
-Understanding these limitations is essential when using data to draw conclusions or inform decisions.
-</p>
+        const timeseriesImg = document.getElementById('crime-timeseries-img');
+        const mapPreFrame = document.getElementById('crime-map-pre-frame');
+        const mapCovidFrame = document.getElementById('crime-map-covid-frame');
+        const interactiveFrame = document.getElementById('interactive-plot-frame');
 
----
-
-<h2>References</h2>
-
-<ul>
-<li>San Francisco Police Department Incident Reports</li>
-<li>Course material: Richardson et al. (bias in policing data)</li>
-<li>COVID-19 lockdown timeline (2020–2021)</li>
-</ul>
-
+        if (timeseriesImg) timeseriesImg.src = `crime_timeseries.png?v=${cacheBust}`;
+        if (mapPreFrame) mapPreFrame.src = `crime_map_pre_covid.html?v=${cacheBust}`;
+        if (mapCovidFrame) mapCovidFrame.src = `crime_map_covid.html?v=${cacheBust}`;
+        if (interactiveFrame) interactiveFrame.src = `interactive_plot.html?v=${cacheBust}`;
+    </script>
 </body>
 </html>
